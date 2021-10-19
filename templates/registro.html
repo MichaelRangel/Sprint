@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <script src="{{ url_for('static', filename='js/validations.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/misEstilos.css') }}" />
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <form class="formulario" method="POST">
+
+        <h1>Crea tu cuenta</h1>
+        <div class="contenedor">
+
+            <div class="input-contenedor">
+                <input type="text" name="nombre" placeholder="Nombre Completo" required>
+                <i class="fas fa-user icon"></i>
+            </div>
+
+            <div class="input-contenedor">
+                <input type="text" name="apellido" placeholder="Apellidos" required>
+                <i class="fas fa-user icon"></i>
+            </div>
+
+            <div class="input-contenedor">
+                <input type="text" name="username" id="username" placeholder="Usuario" required>
+                <i class="fas fa-user icon"></i>
+            </div>
+            <span class="error" id="errorUsername"></span>
+
+            <div class="input-contenedor">
+                <input type="text" name="correo" placeholder="Correo Electronico" required>
+                <i class="fas fa-envelope icon"></i>
+            </div>
+            <span class="error" id="errorMail"></span>
+
+            <div class="input-contenedor">
+                <input type="password" name="userPassword" placeholder="Contraseña" required>
+                <i class="fas fa-key icon"></i>
+            </div>
+            <span class="error" id="errorPassword"></span>
+            <button type="submit" value="Enviar" id="botonEnviar" class="button">Crear cuenta</button>
+
+            <div class="Terminos">
+                <p>
+                    <input type="checkbox" name="condiciones" style="color:black;padding-left:20px;" required>Debes aceptar los <a style="color:blue;" href="/terminosYcondiciones"> Términos y Condiciones</a> para poder registarte</p>
+                </p>
+            </div>
+            <p>¿Ya tienes una cuenta?<a class="link" href="/login">Iniciar Sesion</a></p>
+        </div>
+    </form>
+</body>
+
+</html>
