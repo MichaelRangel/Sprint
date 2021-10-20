@@ -99,14 +99,14 @@ def login():
         if user is not None:
             clave = clave + usuario
             sw = check_password_hash(user[5], clave)
-            
+
             if(sw):
 
                 session['nombre'] = user[1]
-                session['nombre'] = user[2]
+                session['usuario'] = user[3]
 
                 return render_template("index.html")
-    
+
     return render_template("login.html")
 
 
@@ -120,13 +120,12 @@ def registro():
         usuario = request.form['username']
         correo = request.form['correo']
         clave = request.form['userPassword']
-        
+
         db = get_db()
-        #agregarle SLAT
+        # agregarle SLAT
         clave = clave + usuario
         clave = generate_password_hash(clave)
-        db.execute("insert into usuario ( nombre, apellido, usuario, correo, clave) values ( ?, ?, ?, ?, ?)",
-                (nombre, apellido, usuario, correo, clave))
+        db.execute("insert into usuario ( nombre, apellido, usuario, correo, clave) values ( ?, ?, ?, ?, ?)",(nombre, apellido, usuario, correo, clave))
         db.commit()
         db.close()
     return render_template("registro.html")
