@@ -97,6 +97,12 @@ def recuperarContraseña():
     return render_template("recuperarcontraseña.html")
 
 
+@main.route('/reserva')
+@login_required
+def reserva():
+
+    return render_template("reservas.html")
+
 @main.route('/search')
 @login_required
 def search():
@@ -127,7 +133,7 @@ def login():
 
                 return render_template("index.html")
 
-            flash('Usuaerio o clave incorrecta')
+            flash('Usuario o clave incorrecta')
 
     return render_template("login.html")
 

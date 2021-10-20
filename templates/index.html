@@ -22,7 +22,7 @@
                 <span> Equipo 1 Grupo 54</span>
                 <p><a class="link" href="/micuenta">Mi usuario</a></p>
                 <p><a href="{{url_for('main.logout')}}">Salir</a></p>
-
+            
             </div>
             <div class="navegacion-sitio">
                 <span id="navegacion-btn">Menu <i class = "fas fa-bars"></i></span>
@@ -36,14 +36,14 @@
         </div>
     </header>
     <!--Fin de la cabecera-->
-
+    
     <!--Barra de navegabilidad-->
     <div class="menu" id="menu">
         <span class="btn-cancelar" id="btn-cancelar"> 
             <i class = "fas fa-times"></i>
         </span>
         <ul class="barra-menu">
-
+        
             <li> <a href="#cabecera">Inicio</a></li>
             <li> <a href="#servicios">Servicios</a></li>
             <li> <a href="#habitaciones">Habitaciones</a></li>
@@ -51,7 +51,6 @@
         </ul>
         <button class="btn sign-up" onclick="location.href='/registro';">Registrarse</button>
         <button class="btn log-in" onclick="location.href='/login';">Iniciar sesion</button>
-
     </div>
     <!--Fin de la barra de navegabilidad-->
 
@@ -134,36 +133,6 @@
         </div>
     </section>
 
-    <!--Reservas-->
-
-    <div class="reserva">
-        <form class="form-reserva">
-            <div class="form-datos">
-                <label for="ingreso"> fecha de ingreso</label>
-                <input type="date" id="fecha-ingreso">
-            </div>
-            <div class="form-datos">
-                <label for="salida">Fecha de Salida</label>
-                <input type="date" id="fecha-salida">
-            </div>
-            <div class="form-datos">
-                <label for="adultos">Adultos:</label>
-                <input type="number" min="1" value="1" id="adultos">
-            </div>
-            <div class="form-datos">
-                <label for="ninos">Niños</label>
-                <input type="number" min="1" value="1" id="ninos">
-            </div>
-            <div class="form-datos">
-                <label for="rooms">Habitaciones: </label>
-                <input type="number" min="1" value="1" id="rooms">
-            </div>
-            <div class="form-datos">
-                <button type="button" class="btn" onclick="location.href='/login';">reserva ahora</button>
-            </div>
-        </form>
-    </div>
-    <!--fin de la reserva-->
 
     <!--Habitaciones-->
 
