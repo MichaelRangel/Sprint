@@ -65,6 +65,7 @@ def micuenta():
 
 
 @main.route('/mydata')
+@login_required
 def mydata():
 
     return render_template("mydata.html")
