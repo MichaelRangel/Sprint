@@ -1,9 +1,18 @@
-import sqlite3
+import functools
 from flask import Flask, render_template, blueprints, request, redirect, url_for, session
 from werkzeug.security import check_password_hash, generate_password_hash
+import sqlite3
 from db import get_db
 
 main = blueprints.Blueprint('main', __name__)
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if 'usuario' not in session:
+            return redirect(url_for('main.login'))
+        return view(**kwargs)
+    return wrapped_view
 
 
 @main.route('/')
@@ -13,36 +22,43 @@ def index():
 
 
 @main.route('/BuscarAdministrador')
+@login_required
 def BuscarAdministrador():
 
     return render_template("BuscarAdministrador.html")
 
 
 @main.route('/BuscarCliente')
+@login_required
 def BuscarCliente():
 
     return render_template("BuscarCliente.html")
 
 
 @main.route('/ListaDeAdministradores')
+@login_required
 def ListaDeAdministradores():
 
     return render_template("ListaDeAdministradores.html")
 
 
 @main.route('/listaDeClientes')
+@login_required
 def listaDeClientes():
 
     return render_template("listaDeClientes.html")
 
 
 @main.route('/ListaDeHabitaciones')
+@login_required
 def ListaDeHabitaciones():
 
     return render_template("ListaDeHabitaciones.html")
 
 
 @main.route('/micuenta')
+@login_required
+@ login_required
 def micuenta():
 
     return render_template("micuenta.html")
@@ -55,12 +71,14 @@ def mydata():
 
 
 @main.route('/NuevaHabitacion')
+@login_required
 def NuevaHabitacion():
 
     return render_template("NuevaHabitacion.html")
 
 
 @main.route('/NuevoAdministrador')
+@login_required
 def NuevoAdministrador():
 
     return render_template("NuevoAdministrador.html")
@@ -79,6 +97,7 @@ def recuperarContraseña():
 
 
 @main.route('/search')
+@login_required
 def search():
 
     return render_template("search.html")
