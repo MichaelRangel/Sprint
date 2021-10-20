@@ -31,7 +31,16 @@
             <span class="error" id="errorPassword"></span>
             
             <button type="submit" value="Enviar" id="botonEnviar" class="button">Iniciar Sesión</button>
+
+            <div>
+                {% for mensaje in get_flashed_messages() %}
+
+                <div class="error">{{ mensaje }}</div>
+                {% endfor %}
+                {% block contenido %} {% endblock %}
+            </div>
             
+
             <div class="enlaces">
             
                 <p> <a class="link" style = "float: left" type="link" href="/registro"> ¿No tienes cuenta? </a></p>

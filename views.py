@@ -1,5 +1,5 @@
 import functools
-from flask import Flask, render_template, blueprints, request, redirect, url_for, session
+from flask import Flask, render_template, blueprints, request, redirect, url_for, session, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 from db import get_db
@@ -126,6 +126,8 @@ def login():
                 session['usuario'] = user[3]
 
                 return render_template("index.html")
+
+            flash('Usuaerio o clave incorrecta')
 
     return render_template("login.html")
 

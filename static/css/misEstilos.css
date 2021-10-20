@@ -9,7 +9,11 @@ body {
 * {
     box-sizing: border-box;
 }
-
+.error
+{
+    color: #D8000C;
+    background-color: #FFBABA;
+}
 .contenedor {
     width: 100%;
     padding: 15px;
