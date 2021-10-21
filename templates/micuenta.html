@@ -42,6 +42,8 @@
 					</li>
 				</ul>
 			</div>
+
+			{% if session['rol'] == 'superadministrador'%}
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
@@ -78,6 +80,7 @@
 					</ul>
 				</li>
 			</ul>
+			{% endif %}
 		</div>
 	</section>
 

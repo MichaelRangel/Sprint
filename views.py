@@ -115,8 +115,8 @@ def search():
 def login():
 
     if request.method == 'POST':
-        usuario = escape(request.form['username'])
-        clave = escape(request.form['userPassword'])
+        usuario = escape(request.form['usuario'])
+        contraseña = escape(request.form['password'])
 
 
         db = get_db()
@@ -126,8 +126,8 @@ def login():
         # python -m pydoc -b
 
         if user is not None:
-            clave = clave + usuario
-            sw = check_password_hash(user[5], clave)
+            contraseña = contraseña + usuario
+            sw = check_password_hash(user[5], contraseña)
 
             if(sw):
 
@@ -148,15 +148,16 @@ def registro():
 
         nombre = escape(request.form['nombre'])
         apellido = escape(request.form['apellido'])
-        usuario = escape(request.form['username'])
+        usuario = escape(request.form['usuario'])
         correo = escape(request.form['correo'])
-        clave = escape(request.form['userPassword'])
+        contraseña = escape(request.form['password'])
+        telefono = escape(request.form['telefono'])
 
         db = get_db()
         # agregarle SLAT
-        clave = clave + usuario
-        clave = generate_password_hash(clave)
-        db.execute("insert into usuario ( nombre, apellido, usuario, correo, clave) values ( ?, ?, ?, ?, ?)",(nombre, apellido, usuario, correo, clave))
+        contraseña = contraseña + usuario
+        contraseña = generate_password_hash(contraseña)
+        db.execute("insert into usuario ( nombre, apellido, usuario, correo, contraseña, telefono) values ( ?, ?, ?, ?, ?, ?)",(nombre, apellido, usuario, correo, contraseña, telefono))
         db.commit()
         db.close()
     return render_template("registro.html")
