@@ -16,20 +16,18 @@
 
 <body>
     <!--Cabecera, se le agrega la clase para su identificacion en el css-->
-    <header class="cabecera" id="cabecera">
+    <header class="cabecera1" id="cabecera">
         <div class="cabecera-superior">
             <div class="nombre-sitio">
                 <span> Equipo 1 Grupo 54</span>
                 <p><a class="link" href="/micuenta">Mi usuario</a></p>
                 <p><a href="{{url_for('main.logout')}}">Salir</a></p>
-
             </div>
             <div class="navegacion-sitio">
                 <span id="navegacion-btn">Menu <i class="fas fa-bars"></i></span>
             </div>
         </div>
         <div class="cabecera-boton flex">
-            <h2>Hotel Shangri-la Dubai</h2>
         </div>
     </header>
     <!--Fin de la cabecera-->
@@ -46,8 +44,6 @@
             <li> <a href="#habitaciones">Habitaciones</a></li>
             <li> <a href="#comentarios">Comentarios</a></li>
         </ul>
-        <button class="btn sign-up" onclick="location.href='/registro';">Registrarse</button>
-        <button class="btn log-in" onclick="location.href='/login';">Iniciar sesion</button>
     </div>
     <!--Fin de la barra de navegabilidad-->
 
@@ -82,4 +78,5 @@
         </form>
     </div>
     <!--fin de la reserva-->
+    <script src="{{ url_for('static', filename='js/javascripts.js') }}"></script>
 </body>

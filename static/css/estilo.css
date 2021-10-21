@@ -90,6 +90,13 @@ img {
     align-content: stretch;
 }
 
+.cabecera1 {
+    background-color:#88abec;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+}
+
 
 /****************************/
 
