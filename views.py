@@ -1,6 +1,7 @@
 import functools
 from flask import Flask, render_template, blueprints, request, redirect, url_for, session, flash
 from werkzeug.security import check_password_hash, generate_password_hash
+from markupsafe import escape
 import sqlite3
 from db import get_db
 
@@ -114,8 +115,10 @@ def search():
 def login():
 
     if request.method == 'POST':
-        usuario = request.form['username']
-        clave = request.form['userPassword']
+        usuario = escape(request.form['username'])
+        clave = escape(request.form['userPassword'])
+
+
         db = get_db()
         user = db.execute('select * from usuario where usuario = ? ', (usuario,)).fetchone()
         db.commit()
@@ -143,11 +146,11 @@ def registro():
 
     if request.method == 'POST':
 
-        nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        usuario = request.form['username']
-        correo = request.form['correo']
-        clave = request.form['userPassword']
+        nombre = escape(request.form['nombre'])
+        apellido = escape(request.form['apellido'])
+        usuario = escape(request.form['username'])
+        correo = escape(request.form['correo'])
+        clave = escape(request.form['userPassword'])
 
         db = get_db()
         # agregarle SLAT
