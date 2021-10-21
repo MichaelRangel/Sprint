@@ -23,6 +23,7 @@ $(document).ready(function() {
             confirmButtonText: '<i class="zmdi zmdi-run"></i> ¡Si, salir!',
             cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> ¡No, cancelar!'
         }).then(function() {
+            
             window.location.href = "{{url_for('main.logout')}}";
         });
     });
