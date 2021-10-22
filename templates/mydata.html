@@ -42,6 +42,8 @@
 					</li>
 				</ul>
 			</div>
+
+			{% if session['rol'] == 'superadministrador'%}
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
@@ -80,6 +82,7 @@
 					</ul>
 				</li>
 			</ul>
+			{% endif %}
 		</div>
 	</section>
 
@@ -92,9 +95,11 @@
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
 				<li>
+					{% if session['rol'] == 'superadministrador'%}
 					<a href="/search" class="btn-search">
 						<i class="zmdi zmdi-search"></i>
 					</a>
+					{% endif %}
 				</li>
 			</ul>
 		</nav>

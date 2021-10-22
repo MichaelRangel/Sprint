@@ -133,6 +133,8 @@ def login():
 
                 session['nombre'] = user[1]
                 session['usuario'] = user[3]
+                session['password'] = user[5]
+                session['rol'] = user[7]
 
                 return render_template("index.html")
 
@@ -157,14 +159,15 @@ def registro():
         # agregarle SLAT
         contraseña = contraseña + usuario
         contraseña = generate_password_hash(contraseña)
-        db.execute("insert into usuario ( nombre, apellido, usuario, correo, contraseña, telefono) values ( ?, ?, ?, ?, ?, ?)",(nombre, apellido, usuario, correo, contraseña, telefono))
+        db.execute("insert into usuario ( nombre, apellido, usuario, correo, contraseña, telefono, rol) values ( ?, ?, ?, ?, ?, ?, ?)",(nombre, apellido, usuario, correo, contraseña, telefono, 'user'))
         db.commit()
         db.close()
+        return render_template("login.html")
     return render_template("registro.html")
 
 
 @main.route('/logout')
 def logout():
     session.clear()
-    return render_template("login.html")
+    return render_template("index.html")
 
