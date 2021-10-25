@@ -72,16 +72,47 @@ def mydata():
     return render_template("mydata.html")
 
 
-@main.route('/NuevaHabitacion')
+@main.route('/NuevaHabitacion', methods=['GET', 'POST'])
 @login_required
 def NuevaHabitacion():
+    if request.method == 'POST':
+
+        CodHab = escape(request.form['codigoHabitacion'])
+        Numpiso = escape(request.form['numPiso'])
+        Precio = escape(request.form['precio'])
+
+        db = get_db()
+
+        db.execute("insert into habitacion ( CodHab, Numpiso, Precio ) values ( ?, ?, ?)", (CodHab, Precio, Numpiso))
+        db.commit()
+        db.close()
+        return render_template("ListaDeHabitaciones.html")
 
     return render_template("NuevaHabitacion.html")
 
 
-@main.route('/NuevoAdministrador')
+@main.route('/NuevoAdministrador', methods=['GET', 'POST'])
 @login_required
 def NuevoAdministrador():
+
+    if request.method == 'POST':
+        cedula = escape(request.form['cedula'])
+        nombre = escape(request.form['nombreAdministrador'])
+        apellido = escape(request.form['apellidoAdminsitrador'])
+        telefono = escape(request.form['telefonoAdministrador'])
+        direccion = escape(request.form['direccionAdministrador'])
+        usuario = escape(request.form['nombreAdministrador'])
+        correo = escape(request.form['emailAdministrador'])
+        contraseña = escape(request.form['passwordAdmministrador'])
+        rol = escape(request.form['ROL'])
+        
+        db = get_db()
+
+        db.execute("insert into administrador ( cedula, nombre, apellido, telefono, direccion, usuario, correo, contraseña, rol) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                   (cedula, nombre, apellido, telefono, direccion, usuario, correo, contraseña, rol))
+        db.commit()
+        db.close()
+        return render_template("ListaDeAdministradores.html")
 
     return render_template("NuevoAdministrador.html")
 
@@ -121,6 +152,7 @@ def login():
 
         db = get_db()
         user = db.execute('select * from usuario where usuario = ? ', (usuario,)).fetchone()
+        superadmin = db.execute('select * from superadministrador where usuario = ? ', (usuario,)).fetchone()
         db.commit()
         db.close()
         # python -m pydoc -b
@@ -137,6 +169,21 @@ def login():
                 session['rol'] = user[7]
 
                 return render_template("index.html")
+
+            flash('Usuario o clave incorrecta')
+
+        if superadmin is not None:
+            contraseña = contraseña + usuario
+            sw = check_password_hash(superadmin[5], contraseña)
+
+            if(sw):
+
+                session['nombre'] = superadmin[1]
+                session['usuario'] = superadmin[3]
+                session['password'] = superadmin[5]
+                session['rol'] = superadmin[7]
+
+                return render_template("micuenta.html")
 
             flash('Usuario o clave incorrecta')
 
